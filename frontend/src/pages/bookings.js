@@ -19,6 +19,7 @@ const servicePrices = {
 const BookingsPage = () => {
   const [formData, setFormData] = useState({
     name: '',
+    Gothram:'',
     phone: '',
     service: bookingOptions[0],
     date: '',
@@ -43,7 +44,11 @@ const BookingsPage = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...formData,
+          name: formData.name,
+          Gothram: formData.Gothram,
+          phone: formData.phone,
+          service: formData.service,
+          date: formData.date,
           amount: servicePrices[formData.service],
         }),
       });
@@ -81,6 +86,18 @@ const BookingsPage = () => {
                 onChange={handleInputChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl"
                 placeholder="Your name"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Gothram/ గోత్రం</label>
+              <input
+                type="text"
+                name="Gothram"
+                value={formData.Gothram}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl"
+                placeholder="Your Gothram"
                 required
               />
             </div>
